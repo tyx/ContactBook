@@ -1,0 +1,25 @@
+{
+    "name": "rezzza/contact-book",
+    "description": "Contact book management.",
+    "keywords": ["contact", "standalone"],
+    "type": "standalone",
+    "homepage": "https://github.com/rezzza/ContactBook",
+    "license": "MIT",
+    "authors": [{
+        "name": "Community contributors",
+        "homepage": "https://github.com/rezzza/ContactBook/contributors"
+    }],
+    "require": {
+        "php": ">=5.3.2",
+        "doctrine/common": "~2.2"
+    },
+    "autoload":     {
+        "psr-0": {
+            "Rezzza\\ContactBook": "src/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "dev"
+}
