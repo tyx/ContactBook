@@ -15,7 +15,7 @@ class Contact extends AggregateRoot
     /**
      * @param array $data
      */
-    public function create(array $data)
+    public function create(array $data = array())
     {
         $this->raise('CreateContact', $data);
     }

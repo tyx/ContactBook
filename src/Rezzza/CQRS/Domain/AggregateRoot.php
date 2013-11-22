@@ -3,6 +3,7 @@
 namespace Rezzza\CQRS\Domain;
 
 use Rezzza\CQRS\Model\Identity\IdentityInterface;
+use Rezzza\CQRS\Event\DomainEvent;
 
 /**
  * AggregateRoot
@@ -49,5 +50,13 @@ abstract class AggregateRoot
         $this->events = array();
 
         return $events;
+    }
+
+    /**
+     * @return IdentityInterface
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

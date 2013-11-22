@@ -2,12 +2,14 @@
 
 namespace Rezzza\CQRS\Event;
 
+use Symfony\Component\EventDispatcher\Event;
+
 /**
  * DomainEvent
  *
  * @author Stephane PY <py.stephane1@gmail.com>
  */
-class DomainEvent
+class DomainEvent extends Event
 {
     /**
      * @var string

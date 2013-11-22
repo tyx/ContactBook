@@ -25,7 +25,7 @@ class Contact
      */
     public function __construct($id = null, array $entryTags = array())
     {
-        $this->id = $id;
+        $this->id        = $id;
         $this->entryTags = $entryTags;
     }
 
