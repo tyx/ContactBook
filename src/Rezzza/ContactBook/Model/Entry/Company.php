@@ -25,8 +25,6 @@ class Company extends Entry
     {
         $this->id          = $id;
         $this->companyName = $companyName;
-
-        $this->raise('CreateEntryCompany', array('id' => $id, 'companyName' => $companyName));
     }
 
     /**

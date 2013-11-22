@@ -25,8 +25,6 @@ class Url extends Entry
     {
         $this->id  = $id;
         $this->url = $url;
-
-        $this->raise('CreateEntryUrl', array('id' => $id, 'url' => $url));
     }
 
     /**

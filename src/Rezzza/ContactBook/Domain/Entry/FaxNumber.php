@@ -1,6 +1,6 @@
 <?php
 
-namespace Rezzza\ContactBook\Model\Entry;
+namespace Rezzza\ContactBook\Domain\Entry;
 
 use Rezzza\ContactBook\Model\Entry\Entry;
 
@@ -12,4 +12,11 @@ use Rezzza\ContactBook\Model\Entry\Entry;
  */
 class FaxNumber extends PhoneNumber
 {
+    /**
+     * @return string
+     */
+    public function getCreateEventName()
+    {
+        return 'CreateEntryFaxNumber';
+    }
 }

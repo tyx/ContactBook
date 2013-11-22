@@ -39,13 +39,6 @@ class Person extends Entry
         $this->civility  = $civility;
         $this->firstName = $firstName;
         $this->lastName  = $lastName;
-
-        $this->raise('CreateEntryPerson', array(
-            'id'        => $id,
-            'civility'  => $civility,
-            'firstName' => $firstName,
-            'lastName'  => $lastName,
-        ));
     }
 
     /**
@@ -71,5 +64,4 @@ class Person extends Entry
     {
         return $this->lastName;
     }
-
 }

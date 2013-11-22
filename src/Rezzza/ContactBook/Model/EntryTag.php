@@ -24,13 +24,16 @@ class EntryTag
      */
     protected $tag;
 
+    /**
+     * @param Contact $contact contact
+     * @param Entry   $entry   entry
+     * @param string  $tag     tag
+     */
     public function __construct(Contact $contact, Entry $entry, $tag)
     {
         $this->contact = $contact;
         $this->entry   = $entry;
         $this->tag     = $tag;
-
-        $this->raise('CreateEntryTag', array('contact' => $contact, 'entry' => $entry, 'tag' => tag));
     }
 
     /**

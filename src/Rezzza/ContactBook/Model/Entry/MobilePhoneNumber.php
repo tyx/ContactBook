@@ -12,11 +12,4 @@ use Rezzza\ContactBook\Model\Entry\Entry;
  */
 class MobilePhoneNumber extends PhoneNumber
 {
-    /**
-     * @return string
-     */
-    public function getCreateEventName()
-    {
-        return 'CreateEntryFaxNumber';
-    }
 }

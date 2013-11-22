@@ -32,24 +32,8 @@ class Group
     public function __construct(ContactBook $contactBook, $id = null, array $contacts = array())
     {
         $this->contactBook = $contactBook;
-        $this->id = $id;
-        $this->contacts = $contacts;
-
-        $this->raise('CreateGroup', array('contactBook' => $contactBook, 'id' => $id, 'contacts' => $contacts));
-    }
-
-    /**
-     * @param Contact $contact contact
-     *
-     * @return Group
-     */
-    public function addContact(Contact $contact)
-    {
-        $this->contact = $contact;
-
-        $this->raise('GroupAddContact', array('id' => $this->getId(), 'contact' => $contact));
-
-        return $this;
+        $this->id          = $id;
+        $this->contacts    = $contacts;
     }
 
     /**

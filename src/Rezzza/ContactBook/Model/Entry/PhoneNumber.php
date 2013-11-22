@@ -25,8 +25,6 @@ class PhoneNumber extends Entry
     {
         $this->id          = $id;
         $this->phoneNumber = $phoneNumber;
-
-        $this->raise($this->getCreateEventName(), array('id' => $id, 'phoneNumber' => $phoneNumber));
     }
 
     /**
@@ -35,13 +33,5 @@ class PhoneNumber extends Entry
     public function getPhoneNumber()
     {
         return $this->phoneNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCreateEventName()
-    {
-        return 'CreateEntryPhoneNumber';
     }
 }

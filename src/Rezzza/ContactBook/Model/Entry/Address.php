@@ -60,16 +60,6 @@ class Address extends Entry
         $this->state     = $state;
         $this->city      = $city;
         $this->zipCode   = $zipCode;
-
-        $this->raise('CreateEntryAddress', array(
-            'id'        => $id,
-            'streetOne' => $streetOne,
-            'streetTwo' => $streetTwo,
-            'country'   => $country,
-            'state'     => $state,
-            'city'      => $city,
-            'zipCode'   => $zipCode,
-        ));
     }
 
     /**

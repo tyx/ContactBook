@@ -1,6 +1,8 @@
 <?php
 
-namespace Rezzza\CQRS\Model;
+namespace Rezzza\CQRS\Domain;
+
+use Rezzza\CQRS\Model\Identity\IdentityInterface;
 
 /**
  * AggregateRoot
@@ -10,9 +12,24 @@ namespace Rezzza\CQRS\Model;
 abstract class AggregateRoot
 {
     /**
+     * Is this class already exists ?
+     *
+     * @var IdentityInterface
+     */
+    private $id;
+
+    /**
      * @var array
      */
     private $events = array();
+
+    /**
+     * @param IdentityInterface $id id
+     */
+    public function __construct(IdentityInterface $id)
+    {
+        $this->id = $id;
+    }
 
     /**
      * @param string $eventName  eventName

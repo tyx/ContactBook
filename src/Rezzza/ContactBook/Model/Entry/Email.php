@@ -25,8 +25,6 @@ class Email extends Entry
     {
         $this->id    = $id;
         $this->email = $email;
-
-        $this->raise('CreateEntryEmail', array('id' => $id, 'email' => $email));
     }
 
     /**

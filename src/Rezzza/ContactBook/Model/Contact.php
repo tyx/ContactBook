@@ -2,15 +2,12 @@
 
 namespace Rezzza\ContactBook\Model;
 
-use Rezzza\CQRS\Model\AggregateRoot;
-
 /**
  * Contact
  *
- * @uses AggregateRoot
  * @author Stephane PY <py.stephane1@gmail.com>
  */
-class Contact extends AggregateRoot
+class Contact
 {
     /**
      * @var integer
@@ -30,22 +27,6 @@ class Contact extends AggregateRoot
     {
         $this->id = $id;
         $this->entryTags = $entryTags;
-
-        $this->raise('CreateContact', array('id' => $id, 'entryTags' => $entryTags));
-    }
-
-    /**
-     * @param EntryTag $entryTag entryTag
-     *
-     * @return Contact
-     */
-    public function addEntryTag(EntryTag $entryTag)
-    {
-        $this->entryTags[] = $entryTag;
-
-        $this->raise('ContactAddEntryTag', array('id' => $this->getId(), 'entryTag' => $entryTag));
-
-        return $this;
     }
 
     /**
@@ -71,13 +52,5 @@ class Contact extends AggregateRoot
         }
 
         return $result;
-    }
-
-    /**
-     * __sleep method for serialization.
-     */
-    public function __sleep()
-    {
-        return array('id', 'entryTags');
     }
 }
