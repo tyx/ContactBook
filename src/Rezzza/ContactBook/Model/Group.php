@@ -25,13 +25,29 @@ class Group
     protected $contacts = array();
 
     /**
-     * @param integer $id id
+     * @param ContactBook $contactBook contactBook
+     * @param string      $id          id
+     * @param array       $contacts    contacts
+     */
+    public function __construct(ContactBook $contactBook, $id = null, array $contacts = array())
+    {
+        $this->contactBook = $contactBook;
+        $this->id = $id;
+        $this->contacts = $contacts;
+
+        $this->raise('CreateGroup', array('contactBook' => $contactBook, 'id' => $id, 'contacts' => $contacts));
+    }
+
+    /**
+     * @param Contact $contact contact
      *
      * @return Group
      */
-    public function setId($id)
+    public function addContact(Contact $contact)
     {
-        $this->id = $id;
+        $this->contact = $contact;
+
+        $this->raise('GroupAddContact', array('id' => $this->getId(), 'contact' => $contact));
 
         return $this;
     }
@@ -45,35 +61,11 @@ class Group
     }
 
     /**
-     * @param ContactBook $contactBook contactBook
-     *
-     * @return Group
-     */
-    public function setContactBook(ContactBook $contactBook)
-    {
-        $this->contactBook = $contactBook;
-
-        return $this;
-    }
-
-    /**
      * @return ContactBook
      */
     public function getContactBook()
     {
         return $this->contactBook;
-    }
-
-    /**
-     * @param Contact $contact contact
-     *
-     * @return Group
-     */
-    public function addContact(Contact $contact)
-    {
-        $this->contact = $contact;
-
-        return $this;
     }
 
     /**

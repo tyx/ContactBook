@@ -18,14 +18,22 @@ class Email extends Entry
     protected $email;
 
     /**
-     * @param string $email email
-     *
-     * @return Email
+     * @param integer $id    id
+     * @param string  $email email
      */
-    public function setEmail($email)
+    public function __construct($id, $email)
     {
+        $this->id    = $id;
         $this->email = $email;
 
-        return $this;
+        $this->raise('CreateEntryEmail', array('id' => $id, 'email' => $email));
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->emai;
     }
 }

@@ -28,39 +28,24 @@ class Person extends Entry
     protected $lastName;
 
     /**
-     * @param string $civility civility
-     *
-     * @return Identity
+     * @param integer $id        id
+     * @param string  $civility  civility
+     * @param string  $firstName firstName
+     * @param string  $lastName  lastName
      */
-    public function setCivility($civility)
+    public function __construct($id, $civility, $firstName, $lastName)
     {
-        $this->civility = $civility;
-
-        return $this;
-    }
-
-    /**
-     * @param string $firstName firstName
-     *
-     * @return Identity
-     */
-    public function setFirstName($firstName)
-    {
+        $this->id        = $id;
+        $this->civility  = $civility;
         $this->firstName = $firstName;
+        $this->lastName  = $lastName;
 
-        return $this;
-    }
-
-    /**
-     * @param string $lastName lastName
-     *
-     * @return Identity
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
+        $this->raise('CreateEntryPerson', array(
+            'id'        => $id,
+            'civility'  => $civility,
+            'firstName' => $firstName,
+            'lastName'  => $lastName,
+        ));
     }
 
     /**
@@ -86,4 +71,5 @@ class Person extends Entry
     {
         return $this->lastName;
     }
+
 }

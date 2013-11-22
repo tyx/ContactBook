@@ -15,18 +15,6 @@ abstract class Entry
     protected $id;
 
     /**
-     * @param integer $id id
-     *
-     * @return Group
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
      * @return integer
      */
     public function getId()

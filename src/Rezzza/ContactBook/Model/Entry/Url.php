@@ -18,15 +18,15 @@ class Url extends Entry
     protected $url;
 
     /**
-     * @param string $url url
-     *
-     * @return Url
+     * @param integer $id  id
+     * @param string  $url url
      */
-    public function setUrl($url)
+    public function __construct($id, $url)
     {
+        $this->id  = $id;
         $this->url = $url;
 
-        return $this;
+        $this->raise('CreateEntryUrl', array('id' => $id, 'url' => $url));
     }
 
     /**

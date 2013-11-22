@@ -43,15 +43,33 @@ class Address extends Entry
     protected $zipCode;
 
     /**
-     * @param string $v v
-     *
-     * @return Address
+     * @param integer $id        id
+     * @param string  $streetOne streetOne
+     * @param string  $streetTwo streetTwo
+     * @param string  $country   country
+     * @param string  $state     state
+     * @param string  $city      city
+     * @param string  $zipCode   zipCode
      */
-    public function setStreetOne($v)
+    public function __construct($id, $streetOne, $streetTwo, $country, $state, $city, $zipCode)
     {
-        $this->streetOne = $v;
+        $this->id        = $id;
+        $this->streetOne = $streetOne;
+        $this->streetTwo = $streetTwo;
+        $this->country   = $country;
+        $this->state     = $state;
+        $this->city      = $city;
+        $this->zipCode   = $zipCode;
 
-        return $this;
+        $this->raise('CreateEntryAddress', array(
+            'id'        => $id,
+            'streetOne' => $streetOne,
+            'streetTwo' => $streetTwo,
+            'country'   => $country,
+            'state'     => $state,
+            'city'      => $city,
+            'zipCode'   => $zipCode,
+        ));
     }
 
     /**
@@ -63,35 +81,11 @@ class Address extends Entry
     }
 
     /**
-     * @param string $v v
-     *
-     * @return Address
-     */
-    public function setStreetTwo($v)
-    {
-        $this->streetTwo = $v;
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getStreetTwo()
     {
         return $this->streetTwo;
-    }
-
-    /**
-     * @param string $v v
-     *
-     * @return Address
-     */
-    public function setCountry($v)
-    {
-        $this->country = $v;
-
-        return $this;
     }
 
     /**
@@ -103,18 +97,6 @@ class Address extends Entry
     }
 
     /**
-     * @param string $v v
-     *
-     * @return Address
-     */
-    public function setState($v)
-    {
-        $this->state = $v;
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getState()
@@ -123,35 +105,11 @@ class Address extends Entry
     }
 
     /**
-     * @param string $v v
-     *
-     * @return Address
-     */
-    public function setCity($v)
-    {
-        $this->city = $v;
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getCity()
     {
         return $this->city;
-    }
-
-    /**
-     * @param string $v v
-     *
-     * @return Address
-     */
-    public function setZipCode($v)
-    {
-        $this->zipCode = $v;
-
-        return $this;
     }
 
     /**

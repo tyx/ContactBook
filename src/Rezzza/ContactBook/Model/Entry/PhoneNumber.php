@@ -18,15 +18,15 @@ class PhoneNumber extends Entry
     protected $phoneNumber;
 
     /**
-     * @param string $phoneNumber phoneNumber
-     *
-     * @return PhoneNumber
+     * @param integer $id          id
+     * @param string  $phoneNumber phoneNumber
      */
-    public function setPhoneNumber($phoneNumber)
+    public function __construct($id, $phoneNumber)
     {
+        $this->id          = $id;
         $this->phoneNumber = $phoneNumber;
 
-        return $this;
+        $this->raise($this->getCreateEventName(), array('id' => $id, 'phoneNumber' => $phoneNumber));
     }
 
     /**
@@ -35,5 +35,13 @@ class PhoneNumber extends Entry
     public function getPhoneNumber()
     {
         return $this->phoneNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreateEventName()
+    {
+        return 'CreateEntryPhoneNumber';
     }
 }

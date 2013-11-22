@@ -24,16 +24,13 @@ class EntryTag
      */
     protected $tag;
 
-    /**
-     * @param Contact $contact contact
-     *
-     * @return EntryTag
-     */
-    public function setContact(Contact $contact)
+    public function __construct(Contact $contact, Entry $entry, $tag)
     {
         $this->contact = $contact;
+        $this->entry   = $entry;
+        $this->tag     = $tag;
 
-        return $this;
+        $this->raise('CreateEntryTag', array('contact' => $contact, 'entry' => $entry, 'tag' => tag));
     }
 
     /**
@@ -45,35 +42,11 @@ class EntryTag
     }
 
     /**
-     * @param Entry $entry entry
-     *
-     * @return EntryTag
-     */
-    public function setEntry(Entry $entry)
-    {
-        $this->entry = $entry;
-
-        return $this;
-    }
-
-    /**
      * @return Entry
      */
     public function getEntry()
     {
         return $this->entry;
-    }
-
-    /**
-     * @param string $tag tag
-     *
-     * @return EntryTag
-     */
-    public function setTag($tag)
-    {
-        $this->tag = $tag;
-
-        return $this;
     }
 
     /**
@@ -83,5 +56,4 @@ class EntryTag
     {
         return $this->tag;
     }
-
 }

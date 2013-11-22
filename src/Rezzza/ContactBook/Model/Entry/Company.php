@@ -18,15 +18,15 @@ class Company extends Entry
     protected $companyName;
 
     /**
-     * @param string $companyName companyName
-     *
-     * @return Identity
+     * @param integer $id          id
+     * @param string  $companyName companyName
      */
-    public function setCompanyName($companyName)
+    public function __construct($id, $companyName)
     {
+        $this->id          = $id;
         $this->companyName = $companyName;
 
-        return $this;
+        $this->raise('CreateEntryCompany', array('id' => $id, 'companyName' => $companyName));
     }
 
     /**

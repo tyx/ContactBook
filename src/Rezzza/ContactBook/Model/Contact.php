@@ -2,12 +2,15 @@
 
 namespace Rezzza\ContactBook\Model;
 
+use Rezzza\CQRS\Model\AggregateRoot;
+
 /**
  * Contact
  *
+ * @uses AggregateRoot
  * @author Stephane PY <py.stephane1@gmail.com>
  */
-class Contact
+class Contact extends AggregateRoot
 {
     /**
      * @var integer
@@ -20,13 +23,27 @@ class Contact
     protected $entryTags = array();
 
     /**
-     * @param integer $id id
-     *
-     * @return Group
+     * @param string $id        id
+     * @param array  $entryTags entryTags
      */
-    public function setId($id)
+    public function __construct($id = null, array $entryTags = array())
     {
         $this->id = $id;
+        $this->entryTags = $entryTags;
+
+        $this->raise('CreateContact', array('id' => $id, 'entryTags' => $entryTags));
+    }
+
+    /**
+     * @param EntryTag $entryTag entryTag
+     *
+     * @return Contact
+     */
+    public function addEntryTag(EntryTag $entryTag)
+    {
+        $this->entryTags[] = $entryTag;
+
+        $this->raise('ContactAddEntryTag', array('id' => $this->getId(), 'entryTag' => $entryTag));
 
         return $this;
     }
@@ -47,7 +64,7 @@ class Contact
     public function getEntries($tag = null)
     {
         $result = array();
-        foreach ($this->getEntryTags() as $entryTag) {
+        foreach ($this->entryTags as $entryTag) {
             if (null === $tag || $entryTag->getTag() === $tag) {
                 $result[] = $entryTag->getEntry();
             }
@@ -57,33 +74,10 @@ class Contact
     }
 
     /**
-     * @param string $tag tag
-     *
-     * @return Entry|null
+     * __sleep method for serialization.
      */
-    public function getEntry($tag = null)
+    public function __sleep()
     {
-        foreach ($this->getEntryTags() as $entryTag) {
-            if (null === $tag || $entryTag->getTag() === $tag) {
-                return $entryTag->getEntry();
-            }
-        }
-    }
-
-    /**
-     * @param EntryTag $entryTag entryTag
-     *
-     * @return Contact
-     */
-    public function addEntryTag(EntryTag $entryTag)
-    {
-        $this->entryTags[] = $entryTag;
-
-        return $this;
-    }
-
-    public function getEntryTags()
-    {
-        return $this->entryTags;
+        return array('id', 'entryTags');
     }
 }
