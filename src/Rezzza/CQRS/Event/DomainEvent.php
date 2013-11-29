@@ -9,7 +9,7 @@ use Symfony\Component\EventDispatcher\Event;
  *
  * @author Stephane PY <py.stephane1@gmail.com>
  */
-class DomainEvent extends Event
+class DomainEvent
 {
     /**
      * @var string

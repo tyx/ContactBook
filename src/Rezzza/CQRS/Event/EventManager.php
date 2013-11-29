@@ -8,8 +8,6 @@ use Rezzza\CQRS\Event\VersionControl\VersionControlInterface;
 use Rezzza\CQRS\Event\Listener\TransactionalListenerInterface;
 use Rezzza\CQRS\Event\Listener\ListenerInterface;
 use Rezzza\CQRS\Transaction\ProcessorCollection as TransactionProcessorCollection;
-use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\EventDispatcher\Event;
 use Rhumsaa\Uuid\Uuid as UuidGenerator;
 
 /**

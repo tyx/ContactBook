@@ -11,8 +11,7 @@
     }],
     "require": {
         "php": ">=5.3.2",
-        "rhumsaa/uuid": "~2.4",
-        "symfony/event-dispatcher" : "~2.1"
+        "rhumsaa/uuid": "~2.4"
     },
     "require-dev": {
         "doctrine/orm": "~2.2"
