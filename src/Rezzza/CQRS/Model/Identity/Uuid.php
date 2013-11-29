@@ -2,8 +2,6 @@
 
 namespace Rezzza\CQRS\Model\Identity;
 
-use Rhumsaa\Uuid\Uuid as UuidGenerator;
-
 /**
  * Uuid
  *

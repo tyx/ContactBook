@@ -17,18 +17,46 @@ class DomainEvent extends Event
     private $name;
 
     /**
+     * @var string
+     */
+    private $aggregateId;
+
+    /**
+     * @var integer
+     */
+    private $version;
+
+    /**
      * @var array
      */
     private $properties;
 
     /**
-     * @param string $name       name
-     * @param array  $properties properties
+     * @param string $name        name
+     * @param array  $properties  properties
+     * @param string $aggregateId aggregateId
      */
-    public function __construct($name, array $properties)
+    public function __construct($name, array $properties, $aggregateId = null)
     {
-        $this->name       = $name;
-        $this->properties = $properties;
+        $this->name        = $name;
+        $this->properties  = $properties;
+        $this->aggregateId = $aggregateId;
+    }
+
+    /**
+     * @param integer $version version
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getVersion()
+    {
+        return $this->version;
     }
 
     /**
@@ -37,6 +65,14 @@ class DomainEvent extends Event
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAggregateId()
+    {
+        return $this->aggregateId;
     }
 
     /**
@@ -52,6 +88,6 @@ class DomainEvent extends Event
      */
     public function __sleep()
     {
-        return array('name', 'properties');
+        return array('name', 'aggregateId', 'properties');
     }
 }

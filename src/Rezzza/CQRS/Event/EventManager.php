@@ -3,9 +3,11 @@
 namespace Rezzza\CQRS\Event;
 
 use Rezzza\CQRS\Domain\DomainManager;
+use Rezzza\CQRS\Event\DomainEvent;
 use Rezzza\CQRS\Event\VersionControl\VersionControlInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\Event;
+use Rhumsaa\Uuid\Uuid as UuidGenerator;
 
 /**
  * EventManager
@@ -46,9 +48,13 @@ class EventManager
      */
     public function flush()
     {
+        $aggregateId = (string) UuidGenerator::uuid1();
+
         foreach ($this->domainManager->getDomains() as $domain) {
             foreach ($domain->popEvents() as $event) {
-                $this->handleEvent($event);
+                $this->handleEvent(
+                    new DomainEvent($event->getName(), $event->getProperties(), $aggregateId)
+                );
             }
             $this->domainManager->detach($domain);
         }
