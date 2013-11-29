@@ -1,6 +1,6 @@
 <?php
 
-namespace Rezzza\CQRS\Model\Identity;
+namespace Rezzza\CQRS\Domain\Identity;
 
 /**
  * Uuid

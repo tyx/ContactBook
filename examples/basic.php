@@ -1,14 +1,16 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+require_once __DIR__."/../config/bootstrap.php";
 
 use Rezzza\ContactBook\Domain;
 use Rezzza\ContactBook\Model;
-use Rezzza\CQRS\Model\Identity\Uuid;
+use Rezzza\CQRS\Domain\Identity\Uuid;
 use Rezzza\CQRS\Bus;
 use Rezzza\CQRS\Domain\DomainManager;
 use Rezzza\CQRS\Event\EventManager;
 use Rezzza\CQRS\Event\DomainEvent;
+use Rezzza\CQRS\Event\Listener\TransactionalListenerInterface;
+use Rezzza\DoctrineCQRS\Event\Listener\DoctrineTransactionalListener;
 
 class AddContactCommand
 {
@@ -41,40 +43,49 @@ class AddContactHandler implements Bus\CommandHandlerInterface
     }
 }
 
-// done in bootstrap of the application.
-$domainManager = new DomainManager();
-$bus = new Bus\MemoryCommandBus($domainManager);
+class ContactListener Extends DoctrineTransactionalListener
+{
+    protected static $i = 0; // to test transactions ...
+
+    public function getSubscribedEvents()
+    {
+        return array('CreateContact');
+    }
+
+    public function CreateContact(DomainEvent $event)
+    {
+        $properties = $event->getProperties();
+        $contact = new Model\Contact($properties['id']->getValue());
+
+        $em = $this->getEntityManager();
+        $em->persist($contact);
+        $em->flush();
+
+
+        // to test transactions ...
+        /*static::$i++;
+
+        if (static::$i) {
+            throw new \Exception('foo');
+        }*/
+    }
+}
+
+/////////////////////////////////////////
+// BOOTSTRAP
+/////////////////////////////////////////
+
 $bus->addHandler(new AddContactHandler());
 
-$versionControl = new \Rezzza\CQRS\Event\VersionControl\MemoryVersionControl();
-
-$eventManager = new EventManager($domainManager, $versionControl);
-
 // here, we must add listeners to the event dispatcher on $eventManager
-$eventManager->addListener('CreateContact', function(DomainEvent $event) {
-    echo "listener 1";
-    // here we inject in database value ...
-});
+$eventManager->addListener(new ContactListener($entityManager));
 
-$eventManager->addListener('CreateContact', function(DomainEvent $event) {
-    echo "listener 2";
-    // here we send a mail ...
-});
-
-
-// our controller ....
+/////////////////////////////////////////
+// CONTROLLER
+/////////////////////////////////////////
 // $bus = .... get a service.
+$bus->handle(new AddContactCommand());
 $bus->handle(new AddContactCommand());
 
 // here we have domain with events attached to the manager, this one will play events of theses domains then dettach domains.
 $eventManager->flush();
-
-print "<pre>";
-var_dump($versionControl->getVersions());
-print "</pre>";
-
-//Il manque clairement:
-//
-// - AggregateId system (définition + transaction quand on execute un ensemble d'event sur un domain)
-// - Un vrai VCS
-// - Event listeners bien moisis (tu vas voir)

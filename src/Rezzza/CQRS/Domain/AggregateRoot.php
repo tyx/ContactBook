@@ -2,7 +2,7 @@
 
 namespace Rezzza\CQRS\Domain;
 
-use Rezzza\CQRS\Model\Identity\IdentityInterface;
+use Rezzza\CQRS\Domain\Identity\IdentityInterface;
 use Rezzza\CQRS\Event\DomainEvent;
 
 /**
@@ -38,18 +38,25 @@ abstract class AggregateRoot
      */
     public function raise($eventName, array $properties)
     {
+        $properties = array_merge(array('id' => $this->getId()), $properties);
+
         $this->events[] = new DomainEvent($eventName, $properties);
     }
 
     /**
      * @return array<DomainEvent>
      */
-    public function popEvents()
+    public function getEvents()
     {
-        $events = $this->events;
-        $this->events = array();
+        return $this->events;
+    }
 
-        return $events;
+    /**
+     * @return array<DomainEvent>
+     */
+    public function clearEvents()
+    {
+        $this->events = array();
     }
 
     /**

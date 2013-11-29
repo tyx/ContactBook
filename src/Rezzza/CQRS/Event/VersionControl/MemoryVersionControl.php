@@ -22,7 +22,6 @@ class MemoryVersionControl implements VersionControlInterface
      */
     public function createVersion(DomainEvent $event)
     {
-        //@todo It misses AggregateId ... where should we add this ?
         $this->versions[] = array(
             $event->getName(), serialize($event->getProperties())
         );
