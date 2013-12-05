@@ -24,6 +24,11 @@ class EventManager
     private $listeners = array();
 
     /**
+     * @var array
+     */
+    private $sorted = array();
+
+    /**
      * @param VersionControlInterface $versionControl versionControl
      */
     public function __construct(VersionControlInterface $versionControl)
@@ -59,20 +64,38 @@ class EventManager
     /**
      * @param ListenerInterface $listener listener
      */
-    public function addListener(ListenerInterface $listener)
+    public function addListener(ListenerInterface $listener, $priority = 0)
     {
-        foreach ($listener->getSubscribedEvents() as $event) {
-            $this->listeners[$event][] = $listener;
+        foreach ($listener->getSubscribedEvents() as $eventName) {
+            $this->listeners[$eventName][$priority][] = $listener;
+            unset($this->sorted[$eventName]);
         }
     }
 
     /**
-     * @param string $event event
+     * @param string $eventName event
      *
      * @return array<ListenerInterface>
      */
-    public function getListeners($event)
+    public function getListeners($eventName)
     {
-        return $this->listeners[$event];
+        if (!isset($this->sorted[$eventName])) {
+            $this->sortListeners($eventName);
+        }
+
+        return $this->sorted[$eventName];
+    }
+
+    /**
+     * @param string $eventName eventName
+     */
+    protected function sortListeners($eventName)
+    {
+        $this->sorted[$eventName] = array();
+
+        if (isset($this->listeners[$eventName])) {
+            krsort($this->listeners[$eventName]);
+            $this->sorted[$eventName] = call_user_func_array('array_merge', $this->listeners[$eventName]);
+        }
     }
 }

@@ -14,7 +14,6 @@ bin/doctrine orm:schema-tool:create (look at config/bootstrap to replace mysql i
 Roadmap
 -------
 
-- Priority system in listeners
 - Use Registry of doctrine instead of ORM\EntityManager to be compliant with ODM, etc...
 
 - Map all models in doctrine
