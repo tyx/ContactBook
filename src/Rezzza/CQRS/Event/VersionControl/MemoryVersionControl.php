@@ -18,13 +18,30 @@ class MemoryVersionControl implements VersionControlInterface
     private $versions = array();
 
     /**
+     * @var array
+     */
+    private $tmpVersions = array();
+
+    /**
      * {@inheritdoc}
      */
     public function createVersion(DomainEvent $event)
     {
-        $this->versions[] = array(
+        $this->tmpVersions[] = array(
             $event->getName(), serialize($event->getProperties())
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function flush()
+    {
+        foreach ($this->tmpVersions as $tmpVersion) {
+            $this->versions[] = $tmpVersion;
+        }
+
+        $this->tmpVersion = array();
     }
 
     /**

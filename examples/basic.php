@@ -88,4 +88,4 @@ $bus->handle(new AddContactCommand());
 $bus->handle(new AddContactCommand());
 
 // here we have domain with events attached to the manager, this one will play events of theses domains then dettach domains.
-$eventManager->flush();
+$domainManager->flush();

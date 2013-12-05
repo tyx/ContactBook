@@ -19,8 +19,9 @@ $conn           = array(
 );
 $entityManager = EntityManager::create($conn, $config);
 
-$domainManager = new DomainManager();
+$versionControl = new MemoryVersionControl();
+$eventManager = new EventManager($versionControl);
+
+$domainManager = new DomainManager($eventManager);
 $bus = new Bus\MemoryCommandBus($domainManager);
 
-$versionControl = new MemoryVersionControl();
-$eventManager = new EventManager($domainManager, $versionControl);

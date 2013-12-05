@@ -1,6 +1,6 @@
 <?php
 
-namespace Rezzza\ContactBook\Model;
+namespace Rezzza\ContactBook\Domain;
 
 use Rezzza\CQRS\Domain\AggregateRoot;
 
