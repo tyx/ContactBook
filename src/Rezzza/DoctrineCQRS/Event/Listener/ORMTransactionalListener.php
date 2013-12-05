@@ -2,17 +2,17 @@
 
 namespace Rezzza\DoctrineCQRS\Event\Listener;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Rezzza\CQRS\Event\Listener\TransactionalListenerInterface;
 use Rezzza\DoctrineCQRS\Transaction\DoctrineProcessor;
-use Doctrine\ORM\EntityManagerInterface; //@todo use registry
 
 /**
- * DoctrineTransactionalListener
+ * ORMTransactionalListener
  *
  * @uses TransactionalListenerInterface
  * @author Stephane PY <py.stephane1@gmail.com>
  */
-abstract class DoctrineTransactionalListener implements TransactionalListenerInterface
+abstract class ORMTransactionalListener implements TransactionalListenerInterface
 {
     /**
      * @var Connection

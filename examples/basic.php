@@ -10,7 +10,7 @@ use Rezzza\CQRS\Domain\DomainManager;
 use Rezzza\CQRS\Event\EventManager;
 use Rezzza\CQRS\Event\DomainEvent;
 use Rezzza\CQRS\Event\Listener\TransactionalListenerInterface;
-use Rezzza\DoctrineCQRS\Event\Listener\DoctrineTransactionalListener;
+use Rezzza\DoctrineCQRS\Event\Listener\ORMTransactionalListener;
 
 class AddContactCommand
 {
@@ -43,7 +43,7 @@ class AddContactHandler implements Bus\CommandHandlerInterface
     }
 }
 
-class ContactListener Extends DoctrineTransactionalListener
+class ContactListener Extends ORMTransactionalListener
 {
     protected static $i = 0; // to test transactions ...
 
