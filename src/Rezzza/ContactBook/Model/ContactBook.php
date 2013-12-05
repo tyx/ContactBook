@@ -36,6 +36,12 @@ class ContactBook
         $this->groups   = $groups;
     }
 
+    public function create($id)
+    {
+        $this->id = $id;
+        $this->raise(new ContactBookCreated(array('id' => $id)));
+    }
+
     /**
      * @return integer
      */

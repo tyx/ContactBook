@@ -30,11 +30,14 @@ class DomainManager
      */
     private $transactionProcessor;
 
+    private $em;
+
     /**
      * @param EventManager $eventManager eventManager
      */
-    public function __construct(EventManager $eventManager)
+    public function __construct(EventManager $eventManager, $em)
     {
+        $this->em = $em;
         $this->eventManager         = $eventManager;
         $this->transactionProcessor = new TransactionProcessorCollection();
     }
@@ -52,6 +55,8 @@ class DomainManager
 
         try {
             foreach ($this->getDomains() as $domain) {
+                $em->persist($domain);
+
                 foreach ($domain->getEvents() as $event) {
                     $this->eventManager->handleEvent(
                         new DomainEvent($event->getName(), $event->getProperties(), $aggregateId)

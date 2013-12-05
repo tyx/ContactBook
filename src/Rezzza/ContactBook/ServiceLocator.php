@@ -34,8 +34,8 @@ abstract class ServiceLocator
             return $eventManager;
         });
 
-        $c['domain.manager'] = $c->share(function($c) {
-            return new $c['domain.manager.class']($c['event.manager']);
+        $c['domain.manager'] = $c->share(function($c) use ($entityManager) {
+            return new $c['domain.manager.class']($c['event.manager'], $entityManager);
         });
 
         $c['version.control.memory'] = $c->share(function($c) {

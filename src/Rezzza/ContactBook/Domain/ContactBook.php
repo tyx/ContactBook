@@ -15,14 +15,6 @@ class ContactBook extends AggregateRoot
     /**
      * @param array $data
      */
-    public function create(array $data = array())
-    {
-        $this->raise('createContactBook', $data);
-    }
-
-    /**
-     * @param array $data
-     */
     public function addContact(array $data)
     {
         $this->raise('contactBookAddContact', $data);
