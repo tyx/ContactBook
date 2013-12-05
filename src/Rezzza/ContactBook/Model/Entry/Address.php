@@ -2,7 +2,7 @@
 
 namespace Rezzza\ContactBook\Model\Entry;
 
-use Rezzza\ContactBook\Model\Entry\Entry;
+use Rezzza\ContactBook\Model\Entry;
 
 /**
  * Address

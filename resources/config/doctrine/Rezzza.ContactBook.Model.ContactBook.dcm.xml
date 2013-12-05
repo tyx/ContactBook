@@ -4,16 +4,15 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Rezzza\ContactBook\Model\Contact" table="rezzza_contactbook_contact">
+    <entity name="Rezzza\ContactBook\Model\ContactBook" table="rezzza_contactbook_contact_book">
         <id name="id" type="string" length="36">
             <generator strategy="NONE" />
         </id>
 
-        <one-to-many field="entryTags" target-entity="Rezzza\ContactBook\Model\EntryTag" mapped-by="contact" />
+        <one-to-many field="contacts" target-entity="Rezzza\ContactBook\Model\Contact" mapped-by="contactBook" />
 
-        <many-to-one field="contactBook" target-entity="Rezzza\ContactBook\Model\ContactBook">
-            <join-column name="contact_book_id" referenced-column-name="id" />
-        </many-to-one>
+        <one-to-many field="groups" target-entity="Rezzza\ContactBook\Model\Group" mapped-by="contactBook" />
+
     </entity>
 
 </doctrine-mapping>

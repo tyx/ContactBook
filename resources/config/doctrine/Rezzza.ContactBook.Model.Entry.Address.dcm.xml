@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Rezzza\ContactBook\Model\Entry\Address" table="rezzza_contactbook_entry_address">
+
+        <field name="streetOne" type="string" column="street_one" length="255" />
+
+        <field name="streetTwo" type="string" column="street_two" length="255" />
+
+        <field name="country" type="string" column="country" length="2"/>
+
+        <field name="state" type="string" column="state" length="64"/>
+
+        <field name="city" type="string" column="city" length="64"/>
+
+        <field name="zipCode" type="string" column="zip_code" length="12"/>
+
+    </entity>
+
+</doctrine-mapping>

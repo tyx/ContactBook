@@ -14,11 +14,8 @@ bin/doctrine orm:schema-tool:create (look at config/bootstrap to replace mysql i
 Roadmap
 -------
 
-- Map all models in doctrine
 - Create command
 - Create listeners
 - ElasticSearch integration ?
 - Store versions in a MYSQL table ?
 - ...
-
-see `@todo` in the code.

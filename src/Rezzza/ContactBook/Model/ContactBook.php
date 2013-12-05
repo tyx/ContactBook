@@ -31,9 +31,9 @@ class ContactBook
      */
     public function __construct($id = null, array $contacts = array(), array $groups = array())
     {
-        $this->id = $id;
+        $this->id       = $id;
         $this->contacts = $contacts;
-        $this->groups = $groups;
+        $this->groups   = $groups;
     }
 
     /**

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Rezzza\ContactBook\Model\Entry" table="rezzza_contactbook_entry" inheritance-type="SINGLE_TABLE">
+
+        <discriminator-column name="discr" type="string" />
+        <discriminator-map>
+            <discriminator-mapping value="address" class="Rezzza\ContactBook\Model\Entry\Address" />
+            <discriminator-mapping value="company" class="Rezzza\ContactBook\Model\Entry\Company" />
+            <discriminator-mapping value="email" class="Rezzza\ContactBook\Model\Entry\Email" />
+            <discriminator-mapping value="fax_number" class="Rezzza\ContactBook\Model\Entry\FaxNumber" />
+            <discriminator-mapping value="mobile_phone_number" class="Rezzza\ContactBook\Model\Entry\MobilePhoneNumber" />
+            <discriminator-mapping value="person" class="Rezzza\ContactBook\Model\Entry\Person" />
+            <discriminator-mapping value="phone_number" class="Rezzza\ContactBook\Model\Entry\PhoneNumber" />
+            <discriminator-mapping value="url" class="Rezzza\ContactBook\Model\Entry\Url" />
+        </discriminator-map>
+
+        <id name="id" type="string" length="36">
+            <generator strategy="NONE" />
+        </id>
+    </entity>
+
+</doctrine-mapping>

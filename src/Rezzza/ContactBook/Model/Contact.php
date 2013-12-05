@@ -20,13 +20,20 @@ class Contact
     protected $entryTags = array();
 
     /**
-     * @param string $id        id
-     * @param array  $entryTags entryTags
+     * @var ContactBook
      */
-    public function __construct($id = null, array $entryTags = array())
+    protected $contactBook;
+
+    /**
+     * @param ContactBook $contactBook contactBook
+     * @param string      $id          id
+     * @param array       $entryTags   entryTags
+     */
+    public function __construct(ContactBook $contactBook, $id, array $entryTags = array())
     {
-        $this->id        = $id;
-        $this->entryTags = $entryTags;
+        $this->contactBook = $contactBook;
+        $this->id          = $id;
+        $this->entryTags   = $entryTags;
     }
 
     /**
@@ -52,5 +59,13 @@ class Contact
         }
 
         return $result;
+    }
+
+    /**
+     * @return ContactBook
+     */
+    public function getContactBook()
+    {
+        return $this->contactBook;
     }
 }

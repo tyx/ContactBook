@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Rezzza\ContactBook\Model\Entry\PhoneNumber" table="rezzza_contactbook_entry_phone_number">
+
+        <discriminator-column name="discr" type="string" />
+        <discriminator-map>
+            <discriminator-mapping value="mobile_phone_number" class="Rezzza\ContactBook\Model\Entry\MobilePhoneNumber" />
+            <discriminator-mapping value="fax_phone_number" class="Rezzza\ContactBook\Model\Entry\FaxPhoneNumber" />
+            <discriminator-mapping value="phone_number" class="Rezzza\ContactBook\Model\Entry\PhoneNumber" />
+        </discriminator-map>
+
+        <field name="phoneNumber" column="phone_number" type="string" length="14" />
+
+    </entity>
+
+</doctrine-mapping>

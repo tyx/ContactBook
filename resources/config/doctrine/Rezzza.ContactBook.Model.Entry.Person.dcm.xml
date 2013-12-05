@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Rezzza\ContactBook\Model\Entry\Person" table="rezzza_contactbook_entry_person">
+
+        <field name="civility" type="string" length="3" nullable="true" />
+
+        <field name="firstName" type="string" column="first_name" length="255" />
+
+        <field name="lastName" type="string" column="last_name" length="255" />
+
+    </entity>
+
+</doctrine-mapping>
