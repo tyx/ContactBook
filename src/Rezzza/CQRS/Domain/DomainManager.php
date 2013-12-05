@@ -64,6 +64,7 @@ class DomainManager
             $this->transactionProcessor->commit($aggregateId);
         } catch (\Exception $e) {
             $this->transactionProcessor->rollback($aggregateId);
+            throw $e;
         }
 
         $this->eventManager->flushVersions();

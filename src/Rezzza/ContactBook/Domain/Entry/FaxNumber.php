@@ -17,6 +17,6 @@ class FaxNumber extends PhoneNumber
      */
     public function getCreateEventName()
     {
-        return 'CreateEntryFaxNumber';
+        return 'createEntryFaxNumber';
     }
 }

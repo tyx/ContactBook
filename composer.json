@@ -14,7 +14,11 @@
         "rhumsaa/uuid": "~2.4"
     },
     "require-dev": {
+        "pimple/pimple": "*",
         "doctrine/orm": "~2.2"
+    },
+    "suggest": {
+        "pimple/pimple": "Use service locator"
     },
     "autoload":     {
         "psr-0": {

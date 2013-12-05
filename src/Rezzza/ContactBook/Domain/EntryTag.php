@@ -17,6 +17,6 @@ class EntryTag extends AggregateRoot
      */
     public function create(array $data)
     {
-        $this->raise('CreateEntryTag', $data);
+        $this->raise('createEntryTag', $data);
     }
 }

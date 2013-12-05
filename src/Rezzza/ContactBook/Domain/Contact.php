@@ -17,7 +17,7 @@ class Contact extends AggregateRoot
      */
     public function create(array $data = array())
     {
-        $this->raise('CreateContact', $data);
+        $this->raise('createContact', $data);
     }
 
     /**
@@ -25,6 +25,6 @@ class Contact extends AggregateRoot
      */
     public function addEntryTag(array $data)
     {
-        $this->raise('ContactAddEntryTag', $data);
+        $this->raise('contactAddEntryTag', $data);
     }
 }

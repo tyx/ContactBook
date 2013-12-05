@@ -23,6 +23,6 @@ class PhoneNumber extends Entry
      */
     public function getCreateEventName()
     {
-        return 'CreateEntryPhoneNumber';
+        return 'createEntryPhoneNumber';
     }
 }

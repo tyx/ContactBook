@@ -15,6 +15,6 @@ class Url extends Entry
      */
     public function create(array $data)
     {
-        $this->raise('CreateEntryUrl', $data);
+        $this->raise('createEntryUrl', $data);
     }
 }

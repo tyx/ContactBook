@@ -17,7 +17,7 @@ class Group extends AggregateRoot
      */
     public function create(array $data)
     {
-        $this->raise('CreateGroup', $data);
+        $this->raise('createGroup', $data);
     }
 
     /**
@@ -25,6 +25,6 @@ class Group extends AggregateRoot
      */
     public function addContact(array $data)
     {
-        $this->raise('GroupAddContact', $data);
+        $this->raise('groupAddContact', $data);
     }
 }

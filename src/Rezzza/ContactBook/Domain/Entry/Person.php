@@ -15,6 +15,6 @@ class Person extends Entry
      */
     public function create(array $data)
     {
-        $this->raise('CreateEntryPerson', $data);
+        $this->raise('createEntryPerson', $data);
     }
 }

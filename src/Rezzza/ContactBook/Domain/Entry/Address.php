@@ -15,6 +15,6 @@ class Address extends Entry
      */
     public function create(array $data)
     {
-        $this->raise('CreateEntryAddress', $data);
+        $this->raise('createEntryAddress', $data);
     }
 }

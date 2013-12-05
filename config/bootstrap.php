@@ -17,11 +17,5 @@ $conn           = array(
     'password' => '',
     'dbname'   => 'contactbook',
 );
+
 $entityManager = EntityManager::create($conn, $config);
-
-$versionControl = new MemoryVersionControl();
-$eventManager = new EventManager($versionControl);
-
-$domainManager = new DomainManager($eventManager);
-$bus = new Bus\MemoryCommandBus($domainManager);
-

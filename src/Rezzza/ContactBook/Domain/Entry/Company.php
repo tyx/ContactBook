@@ -15,6 +15,6 @@ class Company extends Entry
      */
     public function create(array $data)
     {
-        $this->raise('CreateEntryCompany', $data);
+        $this->raise('createEntryCompany', $data);
     }
 }

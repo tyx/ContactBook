@@ -15,6 +15,6 @@ class Email extends Entry
      */
     public function create(array $data)
     {
-        $this->raise('CreateEntryEmail', $data);
+        $this->raise('createEntryEmail', $data);
     }
 }

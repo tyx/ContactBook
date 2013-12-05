@@ -15,6 +15,6 @@ class MobilePhoneNumber extends PhoneNumber
      */
     public function getCreateEventName()
     {
-        return 'CreateEntryMobileNumber';
+        return 'createEntryMobileNumber';
     }
 }
